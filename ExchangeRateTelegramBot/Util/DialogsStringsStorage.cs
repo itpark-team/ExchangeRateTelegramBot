@@ -1,4 +1,5 @@
 using System.Text;
+using ExchangeRateTelegramBot.FakeApi;
 using ExchangeRateTelegramBot.ImdbParser;
 
 namespace ExchangeRateTelegramBot.Util;
@@ -25,4 +26,21 @@ public class DialogsStringsStorage
 
         return stringBuilder.ToString();
     }
+    
+    public static string CreatePost(FakePost fakePost)
+    {
+        return $"userId:{fakePost.UserId}\nid:{fakePost.Id}\ntitle:{fakePost.Title}\nbody:{fakePost.Title}";
+    }
+    
+    public static string CreateAllPosts(List<FakePost> fakePosts)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach (FakePost post in fakePosts)
+        {
+            stringBuilder.AppendLine(CreatePost(post));
+        }
+
+        return stringBuilder.ToString();
+    }
+    
 }

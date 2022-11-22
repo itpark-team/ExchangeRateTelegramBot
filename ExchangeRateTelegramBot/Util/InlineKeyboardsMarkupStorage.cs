@@ -16,6 +16,16 @@ public class InlineKeyboardsMarkupStorage
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowTop250Movies.Name,
                 BotButtonsStorage.ShowTop250Movies.CallBackData),
         },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowPostById.Name,
+                BotButtonsStorage.ShowPostById.CallBackData),
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowAllPosts.Name,
+                BotButtonsStorage.ShowAllPosts.CallBackData),
+        },
         
     });
 

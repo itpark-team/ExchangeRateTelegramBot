@@ -1,6 +1,7 @@
 using System.Text;
-using ExchangeRateTelegramBot.Api;
+using ExchangeRateTelegramBot.CbrApi;
 using ExchangeRateTelegramBot.BotInitializer;
+using ExchangeRateTelegramBot.FakeApi;
 using ExchangeRateTelegramBot.ImdbParser;
 using ExchangeRateTelegramBot.Router;
 using ExchangeRateTelegramBot.Util;
@@ -12,11 +13,13 @@ public class MainMenuService
 {
     private CbrApiWorker _cbrApiWorker;
     private ImdbSiteParser _imdbSiteParser;
+    private FakeApiWorker _fakeApiWorker;
 
     public MainMenuService()
     {
         _cbrApiWorker = new CbrApiWorker();
         _imdbSiteParser = new ImdbSiteParser();
+        _fakeApiWorker = new FakeApiWorker();
     }
 
     public BotTextMessage ProcessCommandStart(string command, TransmittedData transmittedData)
@@ -46,6 +49,22 @@ public class MainMenuService
             
             return new BotTextMessage(
                 DialogsStringsStorage.CreateTopFilms(films)
+            );
+        }
+        else if (callBackData == BotButtonsStorage.ShowPostById.CallBackData)
+        {
+            FakePost fakePost = _fakeApiWorker.GetById(1);
+            
+            return new BotTextMessage(
+                DialogsStringsStorage.CreatePost(fakePost)
+            );
+        }
+        else if (callBackData == BotButtonsStorage.ShowAllPosts.CallBackData)
+        {
+            List<FakePost> fakePosts = _fakeApiWorker.GetAll().GetRange(0, 5);
+            
+            return new BotTextMessage(
+                DialogsStringsStorage.CreateAllPosts(fakePosts)
             );
         }
 

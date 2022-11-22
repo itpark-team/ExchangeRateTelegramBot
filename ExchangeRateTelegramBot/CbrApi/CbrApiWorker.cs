@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-namespace ExchangeRateTelegramBot.Api;
+namespace ExchangeRateTelegramBot.CbrApi;
 
 public class CbrApiWorker
 {

@@ -1,4 +1,4 @@
-namespace ExchangeRateTelegramBot.Api;
+namespace ExchangeRateTelegramBot.CbrApi;
 
 public class ExchangeRate
 {
