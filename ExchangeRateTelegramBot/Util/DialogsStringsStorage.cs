@@ -1,3 +1,6 @@
+using System.Text;
+using ExchangeRateTelegramBot.ImdbParser;
+
 namespace ExchangeRateTelegramBot.Util;
 
 public class DialogsStringsStorage
@@ -10,5 +13,16 @@ public class DialogsStringsStorage
     public static string CreateCurrentExchangeRate(DateTime dateTime, double usd, double eur)
     {
         return $"Курс валют на {dateTime}\n1 американский доллар = {usd} руб.\n1 евро = {eur} руб.";
+    }
+    
+    public static string CreateTopFilms(List<Film> films)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach (Film film in films)
+        {
+            stringBuilder.AppendLine($"{film.Number}. {film.Name} {film.Year} {film.Rating}");
+        }
+
+        return stringBuilder.ToString();
     }
 }

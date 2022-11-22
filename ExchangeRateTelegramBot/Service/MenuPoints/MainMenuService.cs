@@ -1,6 +1,7 @@
 using System.Text;
 using ExchangeRateTelegramBot.Api;
 using ExchangeRateTelegramBot.BotInitializer;
+using ExchangeRateTelegramBot.ImdbParser;
 using ExchangeRateTelegramBot.Router;
 using ExchangeRateTelegramBot.Util;
 
@@ -10,10 +11,12 @@ namespace ExchangeRateTelegramBot.Service.MenuPoints;
 public class MainMenuService
 {
     private CbrApiWorker _cbrApiWorker;
+    private ImdbSiteParser _imdbSiteParser;
 
     public MainMenuService()
     {
         _cbrApiWorker = new CbrApiWorker();
+        _imdbSiteParser = new ImdbSiteParser();
     }
 
     public BotTextMessage ProcessCommandStart(string command, TransmittedData transmittedData)
@@ -37,10 +40,12 @@ public class MainMenuService
                     exchangeRate.Eur)
             );
         }
-        else if (callBackData == BotButtonsStorage.ShowRandomQuote.CallBackData)
+        else if (callBackData == BotButtonsStorage.ShowTop250Movies.CallBackData)
         {
+            List<Film> films = _imdbSiteParser.getFirstFilmsFromTop250(100);
+            
             return new BotTextMessage(
-                "ShowRandomQuote"
+                DialogsStringsStorage.CreateTopFilms(films)
             );
         }
 

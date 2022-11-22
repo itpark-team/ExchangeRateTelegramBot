@@ -13,8 +13,8 @@ public class InlineKeyboardsMarkupStorage
         },
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowRandomQuote.Name,
-                BotButtonsStorage.ShowRandomQuote.CallBackData),
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowTop250Movies.Name,
+                BotButtonsStorage.ShowTop250Movies.CallBackData),
         },
         
     });
