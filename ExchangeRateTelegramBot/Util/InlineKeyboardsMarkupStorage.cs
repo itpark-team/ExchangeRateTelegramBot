@@ -26,7 +26,11 @@ public class InlineKeyboardsMarkupStorage
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ShowAllPosts.Name,
                 BotButtonsStorage.ShowAllPosts.CallBackData),
         },
-        
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.AddNewPosts.Name,
+                BotButtonsStorage.AddNewPosts.CallBackData),
+        }
     });
 
     

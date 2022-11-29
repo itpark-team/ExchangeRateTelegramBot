@@ -13,7 +13,8 @@ public class ImdbSiteParser
         }
 
         HttpClient httpClient = new HttpClient();
-        string htmlAsString = httpClient.GetStringAsync("https://www.imdb.com/chart/top").Result;
+        //string htmlAsString = httpClient.GetStringAsync("https://www.imdb.com/chart/top").Result;
+        string htmlAsString = httpClient.GetStringAsync("https://www.kinonews.ru/games_top100/").Result;
 
         HtmlDocument htmlDocument = new HtmlDocument();
         htmlDocument.LoadHtml(htmlAsString);

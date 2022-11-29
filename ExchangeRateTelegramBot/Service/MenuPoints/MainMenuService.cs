@@ -67,6 +67,21 @@ public class MainMenuService
                 DialogsStringsStorage.CreateAllPosts(fakePosts)
             );
         }
+        else if (callBackData == BotButtonsStorage.AddNewPosts.CallBackData)
+        {
+            FakePost fakePost = new FakePost()
+            {
+                Body = "Mybody",
+                Title = "Mytitle",
+                UserId = 112111
+            };
+
+            FakePost addedPost = _fakeApiWorker.AddNew(fakePost);
+          
+            return new BotTextMessage(
+                DialogsStringsStorage.CreatePost(addedPost)
+            );
+        }
 
         throw new Exception("CallBackData не распознана");
     }

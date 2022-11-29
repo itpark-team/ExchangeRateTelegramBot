@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 
 namespace ExchangeRateTelegramBot.FakeApi;
@@ -22,5 +23,19 @@ public class FakeApiWorker
         List<FakePost> fakePosts = JsonSerializer.Deserialize<List<FakePost>>(jsonAsString);
 
         return fakePosts;
+    }
+    
+    public FakePost AddNew(FakePost insertFakePost)
+    {
+        HttpClient httpClient = new HttpClient();
+        string insertFakePostAsJson = JsonSerializer.Serialize(insertFakePost);
+        
+        HttpContent httpContent = new StringContent(insertFakePostAsJson, Encoding.UTF8, "application/json");
+        
+        string addedFakePostAsJson = httpClient.PostAsync("https://jsonplaceholder.typicode.com/posts", httpContent).Result.Content.ReadAsStringAsync().Result;
+
+        FakePost addedFakePost = JsonSerializer.Deserialize<FakePost>(addedFakePostAsJson);
+
+        return addedFakePost;
     }
 }

@@ -8,7 +8,9 @@ public class BotButtonsStorage
     
     public static BotButton ShowPostById { get; } = new BotButton("Показать пост по ИД", "ShowPostById");
     
-    public static BotButton ShowAllPosts { get; } = new BotButton("Показать все посты", "{");
+    public static BotButton ShowAllPosts { get; } = new BotButton("Показать все посты", "ShowAllPosts");
+    
+    public static BotButton AddNewPosts { get; } = new BotButton("Добавить новый пост", "AddNewPosts");
     #endregion
 
    
