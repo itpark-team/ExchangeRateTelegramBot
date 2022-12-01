@@ -46,7 +46,7 @@ public class MainMenuService
         else if (callBackData == BotButtonsStorage.ShowTop250Movies.CallBackData)
         {
             List<Film> films = _imdbSiteParser.getFirstFilmsFromTop250(100);
-            
+
             return new BotTextMessage(
                 DialogsStringsStorage.CreateTopFilms(films)
             );
@@ -54,7 +54,7 @@ public class MainMenuService
         else if (callBackData == BotButtonsStorage.ShowPostById.CallBackData)
         {
             FakePost fakePost = _fakeApiWorker.GetById(1);
-            
+
             return new BotTextMessage(
                 DialogsStringsStorage.CreatePost(fakePost)
             );
@@ -62,7 +62,7 @@ public class MainMenuService
         else if (callBackData == BotButtonsStorage.ShowAllPosts.CallBackData)
         {
             List<FakePost> fakePosts = _fakeApiWorker.GetAll().GetRange(0, 5);
-            
+
             return new BotTextMessage(
                 DialogsStringsStorage.CreateAllPosts(fakePosts)
             );
@@ -77,9 +77,34 @@ public class MainMenuService
             };
 
             FakePost addedPost = _fakeApiWorker.AddNew(fakePost);
-          
+
             return new BotTextMessage(
                 DialogsStringsStorage.CreatePost(addedPost)
+            );
+        }
+        else if (callBackData == BotButtonsStorage.DeletePostById.CallBackData)
+        {
+            bool deleteResult = _fakeApiWorker.DeleteById(1);
+
+            string textMessage = deleteResult ? "успешно удалено" : "ошибка удаления";
+
+            return new BotTextMessage(
+                textMessage
+            );
+        }
+        else if (callBackData == BotButtonsStorage.UpdatePostById.CallBackData)
+        {
+            FakePost fakePost = new FakePost()
+            {
+                Body = "MybodyUpdate",
+                Title = "MytitleUpdate",
+                UserId = 10000
+            };
+
+            FakePost updatedPost = _fakeApiWorker.UpdateById(1, fakePost);
+
+            return new BotTextMessage(
+                DialogsStringsStorage.CreatePost(updatedPost)
             );
         }
 

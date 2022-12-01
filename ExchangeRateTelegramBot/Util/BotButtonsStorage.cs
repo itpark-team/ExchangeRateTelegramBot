@@ -11,6 +11,10 @@ public class BotButtonsStorage
     public static BotButton ShowAllPosts { get; } = new BotButton("Показать все посты", "ShowAllPosts");
     
     public static BotButton AddNewPosts { get; } = new BotButton("Добавить новый пост", "AddNewPosts");
+    
+    public static BotButton DeletePostById { get; } = new BotButton("Удалить пост по ИД", "DeletePostById");
+    
+    public static BotButton UpdatePostById { get; } = new BotButton("Обновить пост по ИД", "UpdatePostById");
     #endregion
 
    
